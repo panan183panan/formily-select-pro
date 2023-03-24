@@ -19,7 +19,6 @@ export function getBrand(id) {
     getBrandList(id).then((res) => {
       const List = res.data.map((item) => {
         const obj = {
-          ...item,
           label: item.name,
           value: item.id,
         };
