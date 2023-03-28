@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "../index.css";
 import {
   SchemaForm,
@@ -20,6 +20,7 @@ import { Button, InputNumber } from "antd";
 const RadioGroup = Radio.Group; // 导入 Radio.Group 组件
 function Need() {
   const actions = createAsyncFormActions();
+  const [educationList,setEducationList] = useState([])
 
   //自定义函数规则
   registerValidationRules({
@@ -31,14 +32,35 @@ function Need() {
     },
   });
 
+  const { onFieldValueChange$ } = FormEffectHooks;
+  const useOneToManyEffects = () => {
+    const { setFieldState } = createFormActions();
+    onFieldValueChange$("marriage").subscribe(({value}) => {
+      console.log(value)
+      if(value==1){
+        setEducationList([
+          { label: "本科", value: "2" },
+          { label: "硕士", value: "3" },
+        ])
+      console.log(value)
+      }else{
+        setEducationList([
+          { label: "大专", value: "1" },
+          { label: "本科", value: "2" },
+          { label: "硕士", value: "3" },
+        ])
+      }
+    });
+  };
+
   return (
     <>
       <div className="container">
         <p>
-          需求2：表单校验 增加表单验证功能。 表单验证规则如下：
-          姓名不得为空。性别、婚姻状况、教育程度必须选择其中一项。
-          生日必须是合法的日期格式。 身高、体重必须是数字，且不得小于0。
-          当用户输入不合法数据时，显示错误提示信息。
+        需求3：表单联动
+        在需求1的基础上，增加表单联动功能。
+        如果用户选择“已婚”选项，则教育程度只能选择“本科”或“硕士”。
+        如果用户选择“未婚”选项，则教育程度可以选择“大专”或“本科”或“硕士”。
         </p>
       </div>
 
@@ -48,6 +70,7 @@ function Need() {
         <div className="form">
           <SchemaForm
             actions={actions}
+            effects={useOneToManyEffects}
             components={{
               Input,
               InputNumber,
@@ -79,6 +102,11 @@ function Need() {
               title="身高"
               name="height"
               minimum={0}
+              x-component-props={{
+                style: {
+                  width: 300,
+                },
+              }}
             />
             <Field
               x-component="InputNumber"
@@ -87,6 +115,11 @@ function Need() {
               name="weight"
               x-rules={[{ required: true }]}
               minimum={0}
+              x-component-props={{
+                style: {
+                  width: 300,
+                },
+              }}
             />
             <Field
               x-component="RadioGroup"
@@ -117,11 +150,7 @@ function Need() {
               required
               title="教育程度"
               name="education"
-              enum={[
-                { label: "大专", value: "1" },
-                { label: "本科", value: "2" },
-                { label: "硕士", value: "3" },
-              ]}
+              enum={educationList}
             />
             <Field
               x-component="DatePicker"
