@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Select } from "@formily/antd-components";
-import { getManager, getBrand } from "../../../api";
+import { Select } from "antd";
+import { getManager, getBrand } from "../../../../api";
 
-export default function ManagerSelect() {
+export default function ManagerSelect(props) {
   const [managerList, setManagerList] = useState([]);
   const [manager, setManager] = useState("");
   useEffect(() => {
@@ -15,8 +15,14 @@ export default function ManagerSelect() {
       });
   }, []);
 
+  const onChange = (value) => {
+    console.log(value)
+    setManager(value)
+  }
+
+
   return (
-    <input type="tel"></input>
+    <Select options={managerList} value={manager} onChange={onChange}/>
   );
 }
 ManagerSelect.isFieldComponent = true;

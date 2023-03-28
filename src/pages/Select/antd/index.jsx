@@ -1,6 +1,6 @@
 import Reactm, { useState, useEffect } from "react";
 import { Select } from "antd";
-import { getManager, getBrand } from "../../api";
+import { getManager, getBrand } from "../../../api";
 
 function Antd() {
   // 存储供应商列表

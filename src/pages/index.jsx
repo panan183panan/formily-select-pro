@@ -1,16 +1,17 @@
-import React from 'react';
-import Antd from './antd/index';
-import Formily from './formily/index';
-import Scheme from './scheme/index';
+import React from "react";
+import Antd from "./Select/antd/index";
+import Formily from "./Select/formily/index";
+import Scheme from "./Select/scheme/index";
+import Pages from "./Select/index";
+import FormTest from "./Form/index";
 import "antd/dist/reset.css";
-function Pages() {
+function App() {
   return (
-    <div>
-      <Antd />
-      <Formily />
-      <Scheme />
-    </div>
+    <>
+      {/* <Pages /> */}
+      <FormTest />
+    </>
   );
 }
 
-export default Pages;
+export default App;

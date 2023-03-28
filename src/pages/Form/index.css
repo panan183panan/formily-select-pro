@@ -1,0 +1,10 @@
+.container {
+  width: 60vw;
+  height: auto;
+  margin: 20px auto;
+  text-align: center;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #e6e6e6, #f0f0f0);
+  box-shadow: 35px 35px 70px #c7c7c7,
+    -35px -35px 70px #ffffff;
+}

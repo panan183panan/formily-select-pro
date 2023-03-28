@@ -18,6 +18,7 @@
     "antd": "latest",
     "axios": "^1.3.4",
     "http-proxy-middleware": "^2.0.6",
+    "mfetch": "^0.2.27",
     "moment": "latest",
     "react": "latest",
     "react-dom": "latest",
